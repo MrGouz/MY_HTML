@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Publier un trajet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #002C4D;
+      text-align: center;
+    }
+
+    .form-container {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #F47C1E;
+      color: white;
+      border: none;
+      font-weight: bold;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .map-box {
+      margin-top: 15px;
+      background: #eee;
+      padding: 20px;
+      border-radius: 6px;
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Publier un trajet</h2>
+
+<div class="form-container">
+  <form id="trajetForm">
+
+    <!-- Ville et quartier de départ -->
+    <label for="villeDepart">Ville de départ</label>
+    <input type="text" id="villeDepart" required />
+
+    <label for="quartierDepart">Quartier/Adresse exacte</label>
+    <input type="text" id="quartierDepart" required />
+
+    <!-- Ville et quartier d'arrivée (affiché après) -->
+    <div id="arriveeFields" class="hidden">
+      <label for="villeArrivee">Ville d'arrivée</label>
+      <input type="text" id="villeArrivee" required />
+
+      <label for="quartierArrivee">Quartier/Adresse exacte</label>
+      <input type="text" id="quartierArrivee" required />
+    </div>
+
+    <!-- MAP -->
+    <div class="map-box">
+      [Carte interactive ici : sélection de la position de départ et d’arrivée]
+    </div>
+
+    <button type="submit">Publier</button>
+  </form>
+</div>
+
+<script>
+  const villeDepart = document.getElementById("villeDepart");
+  const quartierDepart = document.getElementById("quartierDepart");
+  const villeArrivee = document.getElementById("villeArrivee");
+  const quartierArrivee = document.getElementById("quartierArrivee");
+  const arriveeFields = document.getElementById("arriveeFields");
+
+  quartierDepart.addEventListener("input", () => {
+    if (villeDepart.value.trim() && quartierDepart.value.trim()) {
+      arriveeFields.classList.remove("hidden");
+    }
+  });
+
+  document.getElementById("trajetForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const data = {
+      villeDepart: villeDepart.value,
+      quartierDepart: quartierDepart.value,
+      villeArrivee: villeArrivee.value,
+      quartierArrivee: quartierArrivee.value
+    };
+
+    // Sauvegarde locale (historique)
+    const historique = JSON.parse(localStorage.getItem("trajetsPublies")) || [];
+    historique.push(data);
+    localStorage.setItem("trajetsPublies", JSON.stringify(historique));
+
+    alert("Trajet publié avec succès !");
+    this.reset();
+    arriveeFields.classList.add("hidden");
+  });
+</script>
+
+</body>
+</html>

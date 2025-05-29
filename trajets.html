@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mes trajets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bleu: #002C4D;
+      --orange: #F47C1E;
+      --fond: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: var(--fond);
+    }
+
+    header {
+      background: var(--bleu);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+    }
+
+    header img {
+      height: 40px;
+    }
+
+    .slogan {
+      flex: 1;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .menu {
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: white;
+      border-top: 1px solid #ccc;
+      display: flex;
+      justify-content: space-around;
+      padding: 6px 0;
+      z-index: 100;
+    }
+
+    .bottom-nav a {
+      text-align: center;
+      color: #002C4D;
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .bottom-nav a.active {
+      color: var(--orange);
+      font-weight: bold;
+    }
+
+    .bottom-nav img {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <img src="assets/go-logo.png" alt="Logo GO" class="logo">
+    <div class="slogan">Livraison rapide</div>
+    <div class="menu">≡</div>
+  </header>
+
+  <main>
+    <h2>Mes trajets</h2>
+    <p>Liste des trajets publiés ou réservés.</p>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <img src="assets/search-icon.png" alt="Recherche">
+      <div>Recherche</div>
+    </a>
+    <a href="publier.html" class="nav-item">
+      <img src="assets/plus-icon.png" alt="Publier">
+      <div>Publier</div>
+    </a>
+    <a href="trajets.html" class="nav-item active">
+      <img src="assets/road-icon.png" alt="Trajets">
+      <div>Trajets</div>
+    </a>
+    <a href="messages.html" class="nav-item">
+      <img src="assets/message-icon.png" alt="Messages">
+      <div>Messages</div>
+    </a>
+    <a href="profil.html" class="nav-item">
+      <img src="assets/profile-icon.png" alt="Profil">
+      <div>Profil</div>
+    </a>
+  </nav>
+
+  <script>
+    console.log("Page trajets chargée.");
+  </script>
+
+</body>
+</html>

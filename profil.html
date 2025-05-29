@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Profil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bleu: #002C4D;
+      --orange: #F47C1E;
+      --fond: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--fond);
+    }
+
+    header {
+      background: var(--bleu);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+    }
+
+    header img {
+      height: 40px;
+    }
+
+    .slogan {
+      flex: 1;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .menu {
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid #ccc;
+      background: #f5f5f5;
+    }
+
+    .tabs button {
+      flex: 1;
+      padding: 12px;
+      background: none;
+      border: none;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .tabs button.active {
+      border-bottom: 3px solid var(--orange);
+      color: var(--orange);
+    }
+
+    .tab-content {
+      display: none;
+      padding: 20px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section h3 {
+      color: var(--bleu);
+      margin-bottom: 8px;
+    }
+
+    .section p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: white;
+      border-top: 1px solid #ccc;
+      display: flex;
+      justify-content: space-around;
+      padding: 6px 0;
+      z-index: 100;
+    }
+
+    .bottom-nav a {
+      text-align: center;
+      color: #002C4D;
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .bottom-nav a.active {
+      color: var(--orange);
+      font-weight: bold;
+    }
+
+    .bottom-nav img {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="assets/go-logo.png" alt="Logo GO">
+    <div class="slogan">Livraison rapide</div>
+    <div class="menu">≡</div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab(0)">Mon profil</button>
+    <button class="tab-btn" onclick="showTab(1)">À propos de vous</button>
+  </div>
+
+  <div class="tab-content active">
+    <div class="section">
+      <h3>Paramètres du compte</h3>
+      <p>Avis</p>
+      <p>Préférences de communication</p>
+      <p>Mode sombre</p>
+      <p>Mot de passe</p>
+      <p>Adresse postale</p>
+    </div>
+    <div class="section">
+      <h3>Virements & paiements</h3>
+      <p>Modes de virement</p>
+      <p>Virements reçus</p>
+      <p>Modes de paiement</p>
+      <p>Paiements & remboursements</p>
+    </div>
+    <div class="section">
+      <h3>Informations</h3>
+      <p>Bons plans</p>
+      <p>Noter l'appli</p>
+      <p>Aide</p>
+      <p>Conditions générales</p>
+      <p>Protection des données</p>
+    </div>
+    <div class="section">
+      <h3>Compte</h3>
+      <p>Déconnexion</p>
+      <p>Fermer mon compte</p>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <div class="section">
+      <h3>Identité</h3>
+      <p>Modifier les informations personnelles</p>
+      <p>Modifier la photo de profil</p>
+      <p>Vous avez un profil vérifié</p>
+      <p>Pièce d'identité vérifiée</p>
+      <p>boressdemanou@gmail.com</p>
+      <p>+237658592731</p>
+    </div>
+    <div class="section">
+      <h3>Récit</h3>
+      <p>J'aime bien discuter quand on me le permet mais de nature calme et non créatif en communication</p>
+    </div>
+    <div class="section">
+      <h3>Véhicules</h3>
+      <p>VOLKSWAGEN POLO - Noir</p>
+      <p>Ajouter un véhicule</p>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <img src="assets/search-icon.png" alt="Recherche">
+      <div>Recherche</div>
+    </a>
+    <a href="publier.html" class="nav-item">
+      <img src="assets/plus-icon.png" alt="Publier">
+      <div>Publier</div>
+    </a>
+    <a href="trajets.html" class="nav-item">
+      <img src="assets/road-icon.png" alt="Trajets">
+      <div>Trajets</div>
+    </a>
+    <a href="messages.html" class="nav-item">
+      <img src="assets/message-icon.png" alt="Messages">
+      <div>Messages</div>
+    </a>
+    <a href="profil.html" class="nav-item active">
+      <img src="assets/profile-icon.png" alt="Profil">
+      <div>Profil</div>
+    </a>
+  </nav>
+
+  <script>
+    function showTab(index) {
+      const tabs = document.querySelectorAll(".tab-content");
+      const buttons = document.querySelectorAll(".tab-btn");
+      tabs.forEach((tab, i) => {
+        tab.classList.toggle("active", i === index);
+        buttons[i].classList.toggle("active", i === index);
+      });
+    }
+  </script>
+
+</body>
+</html>

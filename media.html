@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>GO - Livraison rapide</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bleu: #002C4D;
+      --bleu-clair: #002C4D;
+      --orange: #F47C1E;
+      --fond: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--fond);
+    }
+
+    header {
+      background: var(--bleu);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-left img {
+      height: 40px;
+    }
+
+    .header-left span {
+      color: var(--orange);
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .slogan {
+      flex: 1;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .menu {
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .menu-content {
+      display: none;
+      position: absolute;
+      right: 15px;
+      top: 50px;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+
+    .menu-content a {
+      display: block;
+      padding: 10px;
+      color: var(--bleu);
+      text-decoration: none;
+      border-bottom: 1px solid #eee;
+    }
+
+    .menu-content a:hover {
+      background: #f4f4f4;
+    }
+
+    .hero {
+      background: url('assets/chauffeur.png') no-repeat center;
+      background-size: cover;
+      height: 220px;
+    }
+
+    .search-form {
+      background: var(--bleu-clair);
+      padding: 20px;
+      margin: -50px 15px 10px 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .search-form input,
+    .search-form button {
+      width: 90%;
+      max-width: 330px;
+      margin: 10px auto;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      display: block;
+      box-sizing: border-box;
+    }
+
+    .search-form input {
+      background: white;
+      color: #000;
+    }
+
+    .search-form button {
+      background: var(--orange);
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .recent-searches {
+      margin: 20px 15px 90px;
+    }
+
+    .recent-searches div {
+      background: #f0f0f0;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: white;
+      border-top: 1px solid #ccc;
+      display: flex;
+      justify-content: space-around;
+      padding: 6px 0;
+      z-index: 100;
+    }
+
+    .bottom-nav a {
+      text-align: center;
+      color: var(--bleu);
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .bottom-nav a.active {
+      color: var(--orange);
+      font-weight: bold;
+    }
+
+    .bottom-nav img {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- En-tête -->
+  <header>
+    <div class="header-left">
+      <img src="assets/go-logo.png" alt="Logo GO" />
+      <span>Expédition</span>
+    </div>
+    <div class="slogan" id="slogan">Livraison rapide</div>
+    <div class="menu" onclick="toggleMenu()">☰
+      <div class="menu-content" id="menuContent">
+        <a href="profil.html">Mon profil</a>
+        <a href="trajets.html">Mes trajets</a>
+        <a href="#" onclick="logout()">Déconnexion</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Image chauffeur -->
+  <div class="hero"></div>
+
+  <!-- Bloc de recherche -->
+  <section class="search-form">
+    <input type="text" placeholder="Ville de départ (ex : Douala, Akwa)" />
+    <input type="text" placeholder="Ville d’arrivée (ex : Yaoundé, Bastos)" />
+    <input type="date" id="date" />
+    <button>Rechercher</button>
+  </section>
+
+  <!-- Historique des recherches -->
+  <div class="recent-searches">
+    <div>Douala → Yaoundé - 25/06/2025</div>
+    <div>Yaoundé → Bafoussam - 28/06/2025</div>
+  </div>
+
+  <!-- Barre de navigation -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item active">
+      <img src="assets/search-icon.png" alt="Recherche" />
+      <div>Recherche</div>
+    </a>
+    <a href="publier.html" class="nav-item">
+      <img src="assets/plus-icon.png" alt="Publier" />
+      <div>Publier</div>
+    </a>
+    <a href="trajets.html" class="nav-item">
+      <img src="assets/road-icon.png" alt="Trajets" />
+      <div>Trajets</div>
+    </a>
+    <a href="messages.html" class="nav-item">
+      <img src="assets/message-icon.png" alt="Messages" />
+      <div>Messages</div>
+    </a>
+    <a href="profil.html" class="nav-item">
+      <img src="assets/profile-icon.png" alt="Profil" />
+      <div>Profil</div>
+    </a>
+  </nav>
+
+  <script>
+    // Date du jour
+    const dateField = document.getElementById("date");
+    const today = new Date().toISOString().split("T")[0];
+    dateField.value = today;
+
+    // Menu déroulant
+    function toggleMenu() {
+      const menu = document.getElementById("menuContent");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    // Simuler la connexion
+    const prenom = localStorage.getItem("prenom") || "Boress";
+    document.getElementById("slogan").textContent = `Bonjour ${prenom}, prêt à expédier ?`;
+
+    function logout() {
+      localStorage.clear();
+      alert("Déconnecté");
+      window.location.reload();
+    }
+  </script>
+
+</body>
+</html>
